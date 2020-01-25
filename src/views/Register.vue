@@ -38,6 +38,7 @@ export default {
   methods: {
     register () {
       let api_url = this.$store.state.api_url
+
       if (this.email == '' || 
           this.password == '' || 
           this.forename == '' ||
@@ -45,6 +46,7 @@ export default {
       ) {
         return alert('Please fill in all fields')
       }
+
       this.$http.post(api_url + 'user/register', {
         forename: this.forename,
         surname: this.surname,

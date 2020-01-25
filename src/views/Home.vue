@@ -34,7 +34,8 @@ export default {
       if (day < 10) {
         day = "0" + day;
       }
-      return month + '-' + day + '-' + year;
+
+      return day + '/' + month + '/' + year;
     }
   }
 }

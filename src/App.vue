@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header v-if="isAuthenticated" />
-    <router-view/>
+    <router-view />
     <Footer v-if="isAuthenticated" />
   </div>
 </template>
@@ -23,6 +23,7 @@ export default {
 }
 </script>
 
+
 <style lang="scss">
- @import './src/assets/scss/main.scss'
+@import './assets/scss/main.scss';
 </style>

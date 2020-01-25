@@ -1,4 +1,3 @@
-  
 <template>
   <main class="view post">
     <section class="stream">
@@ -48,6 +47,7 @@ export default {
     },
     upload () {
       let api_url = this.$store.state.api_url;
+
       this.$http.post(api_url + 'post/newpost', {
         auth_token: localStorage.getItem('jwt'),
         image: this.cap,
@@ -69,6 +69,7 @@ export default {
       width: window.innerWidth,
       height: window.innerWidth
     };
+
     if (this.$refs.canvas) {
       this.canvas = this.$refs.canvas;
       this.canvas.width = window.innerWidth;

@@ -1,9 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import store from '../store'
-import Home from '../views/Home.vue'
-import Login from '../views/Login.vue'
-import Register from '../views/Register.vue'
+import axios from 'axios'
+import store from './store'
+import Home from './views/Home.vue'
+import Post from './views/Post.vue'
+import Profile from './views/Profile.vue'
+import Login from './views/Login.vue'
+import Register from './views/Register.vue'
 
 Vue.use(Router)
 
@@ -34,12 +37,36 @@ let router = new Router({
       meta: {
         requiresAuth: true
       }
+    },
+    {
+      path: '/newpost',
+      name: 'post',
+      component: Post,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: Profile,
+      meta: {
+        requiresAuth: true
+      }
     }
   ]
 })
 
 router.onReady(() => {
-  store.commit('isAuthenticated')
+  store.commit('isAuthenticated');
+
+  axios.get(store.state.api_url + 'post/getposts')
+    .then(response => {
+      store.commit('getFeed', response.data);
+    })
+    .catch(err => {
+      if (err) throw err;
+    });
 })
 
 router.beforeEach((to, from, next) => {

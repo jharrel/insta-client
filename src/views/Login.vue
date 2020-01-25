@@ -37,6 +37,7 @@ export default {
     login () {
       let api_url = this.$store.state.api_url
       if (this.email == '' || this.password == '') return alert('Please fill in all fields')
+
       this.$http.post(api_url + 'user/login', {
         email: this.email,
         password: this.password
@@ -44,16 +45,19 @@ export default {
         if (response.data.auth) {
           this.$store.commit('login', response.data.token);
         } else {
+
           if (response.data.mailError) {
             this.emailError = true;
           } else {
             this.emailError = false;
           }
+
           if (response.data.passError) {
             this.passError = true;
           } else {
             this.passError = false;
           }
+
           this.error = response.data.msg
           this.hasErrors = true
         }
